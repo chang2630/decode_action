@@ -1,8 +1,4 @@
-
-"""
---------介绍--------------
 搜 https://p.xpfarm.cn/treemp/wx.Login/index
-
 变量  请求体#备注     （没有备注 也可以运行）
 变量名 XPNCCK
 多账号   换行/回车   
