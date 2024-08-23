@@ -1,831 +1,544 @@
-//Tue Aug 13 2024 09:06:03 GMT+0000 (Coordinated Universal Time)
+//Fri Aug 23 2024 15:50:16 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
-/**
- * 变量：elmck: 必填，账号cookie
- * cron 1 0,6,12,18,21 * * *
- * 需要手动玩到四级才能跑
- */
-
-const $ = new Env("\u997F\u4E86\u4E48\u68A6\u5E7B\u5C0F\u9662");
-const {
-  "getToken": getToken,
-  "tryCatchPromise": tryCatchPromise,
-  "getCookies": getCookies,
-  "checkCk": checkCk,
-  "getUserInfo": getUserInfo,
-  "wait": wait
-} = require("./common.js");
-const _0xd960c1 = require("request");
-const md5 = require("md5");
-let _0x244760 = 1;
-let _0x22b780;
-async function _0x1d5d09(_0x37366f) {
-  const _0x309187 = {
-    "bizScene": "ELEME_ELMYLY",
-    "instance": "INNER"
-  };
-  let _0x495e7d = await _0x768dee("mtop.alsc.playgame.common.real.name.authentication", _0x37366f, _0x309187);
-  return _0x495e7d["authentication"];
-}
-async function _0x2eb09b(_0x4dbdaf) {
-  const _0x1851a7 = new Date()["getTime"]();
-  const _0x34e39f = {
-    "body": "{\"nickname\":\"\u666E\u901A\u73A9\u5BB6\",\"avatar\":\"998d3ad143b581e8f2a3866c1f8a783cjpeg\",\"inviterId\":\"\",\"inviterType\":0,\"shareTime\":0,\"debug\":null,\"reqIdx\":" + _0x244760 + ",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/api/role/login",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x1851a7 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  let _0x4f8b6c = await _0x768dee("mtop.miniapp.cloud.application.request", _0x4dbdaf, _0x34e39f);
-  if (_0x4f8b6c) {
-    return _0x4f8b6c["data"];
+NAME = "上海崇明";
+VALY = ["shcmck"];
+LOGS = 0;
+CK = "";
+var userList = [];
+usid = 0;
+class Bar {
+  constructor(_0x4e461a) {
+    this.o = _0x4e461a;
   }
-  return null;
-}
-async function _0xe6e63a(_0x3659dc) {
-  const _0x239196 = new Date()["getTime"]();
-  _0x244760++;
-  const _0x4411d4 = {
-    "body": "{\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/onlineB/api/game/getAllOpenActivityInfo",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x239196 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  return await _0x768dee("mtop.miniapp.cloud.application.request", _0x3659dc, _0x4411d4);
-}
-async function _0x54ec17(_0x27230d, _0x115188, _0x59c4d3, _0x1a1549 = 1014, _0x244913) {
-  const _0x1b43f3 = new Date()["getTime"]();
-  _0x244760++;
-  const _0x5ecf44 = {
-    "body": "{\"orderQueryId\":\"" + _0x115188 + "\",\"posArray\":" + JSON["stringify"](_0x59c4d3) + ",\"customerId\":\"" + _0x1a1549 + "\",\"type\":" + _0x244913 + ",\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/api/game/completeOrder",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x1b43f3 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  let _0x3e174f = await _0x768dee("mtop.miniapp.cloud.application.request", _0x27230d, _0x5ecf44);
-  if (_0x3e174f) {
-    let _0x9d72de = _0x3e174f["data"];
-    if (!_0x9d72de) {
-      console["log"](_0x3e174f);
-      return null;
-    }
-    let _0x45eb13 = _0x9d72de["updatePieceArray"];
-    if (_0x45eb13) {
-      for (let _0x176335 = 0; _0x176335 < _0x45eb13["length"]; _0x176335++) {
-        let _0x132eeb = _0x45eb13[_0x176335];
-        for (let _0x49433f = 0; _0x49433f < _0xa8f67f["length"]; _0x49433f++) {
-          let _0x4489d5 = _0xa8f67f[_0x49433f];
-          if (_0x132eeb["pieceId"] === _0x4489d5["pieceId"]) {
-            _0xa8f67f[_0x49433f] = _0x132eeb;
-          }
-        }
-      }
-    }
-    let _0x498986 = _0x9d72de["ownCropMap"];
-    if (_0x498986) {
-      _0x22b780 = _0x498986;
-    }
-    if (_0x9d72de["orderArray"]) {
-      _0xb0cda6 = _0x9d72de["orderArray"];
-    }
+  async user() {
+    let _0x181401 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x57d77c = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/personal/get", _0x181401);
+    this.name = _0x57d77c.data.nickname;
+    console.log("用户名：【" + this.name + "】==>现有积分：" + _0x57d77c.data.score);
   }
-  return _0x3e174f;
-}
-async function _0x25c58b(_0x4cc044) {
-  const _0x15b9ea = new Date()["getTime"]();
-  _0x244760++;
-  const _0x4a5bfa = {
-    "body": "{\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/onlineB/api/task/getTasksList",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x15b9ea + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  let _0xc27a30 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x4cc044, _0x4a5bfa);
-  let _0x2cf1a5 = _0xc27a30["data"];
-  if (_0x2cf1a5) {
-    try {
-      let _0x122251 = _0x2cf1a5["taskInfo"]["dailyTasks"];
-      if (_0x122251) {
-        for (const _0x1eea0c of Object["keys"](_0x122251)) {
-          const _0x282ba3 = _0x122251[_0x1eea0c];
-          if (_0x282ba3["type"] === 3 && !_0x282ba3["haveGotReward"]) {
-            let _0x3b45e1 = await _0x100c7f(_0x4cc044, _0x1eea0c);
-            if (_0x3b45e1["data"]) {
-              console["log"]("\u9886\u53D6\u4EFB\u52A1\u5956\u52B1\u5B8C\u6210\uFF0C\u5F53\u524D\u4E50\u56ED\u5E01", _0x3b45e1["data"]["elemCoin"]);
-            } else {}
-          }
-        }
-      }
-    } catch (_0x3dbc0c) {}
-  }
-}
-async function _0x100c7f(_0x85b4f3, _0x29751c) {
-  const _0x461b55 = new Date()["getTime"]();
-  _0x244760++;
-  const _0x450a04 = {
-    "body": "{\"taskId\":" + _0x29751c + ",\"taskType\":0,\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/api/task/getTaskAward",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x461b55 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  return await _0x768dee("mtop.miniapp.cloud.application.request", _0x85b4f3, _0x450a04);
-}
-async function _0x4338e2(_0x3470b3, _0xf1a2ea) {
-  const _0x3bf80f = new Date()["getTime"]();
-  _0x244760++;
-  const _0x333999 = {
-    "body": "{\"pos\":" + JSON["stringify"](_0xf1a2ea) + ",\"reqIdx\":" + _0x244760 + " ,\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/onlineB/api/game/cropSell",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x3bf80f + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  let _0x13ff62 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x3470b3, _0x333999);
-  if (_0x13ff62["data"]) {
-    for (let _0x173e36 = 0; _0x173e36 < _0xa8f67f["length"]; _0x173e36++) {
-      let _0x4818db = _0xa8f67f[_0x173e36];
-      if (_0x13ff62["data"]["piece"]["pieceId"] === _0x4818db["pieceId"]) {
-        _0xa8f67f[_0x173e36] = _0x13ff62["data"]["piece"];
-      }
-    }
-    console["log"]("\u552E\u5356\u690D\u7269\uFF0C\u5F53\u524D\u91D1\u5E01", _0x13ff62["data"]["coin"]);
-  }
-  return _0x13ff62;
-}
-async function _0x768dee(_0xe42167, _0x846f90, _0x3c14d6) {
-  const _0x45d61d = {
-    "accept": "application/json",
-    "content-type": "application/x-www-form-urlencoded",
-    "cookie": _0x846f90,
-    "x-miniapp-id-taobao": "3000000088680964",
-    "x-miniapp-version": "0.0.19",
-    "x-mini-appkey": "34351764",
-    "x-miniapp-env": "{\"nbsn\":\"ONLINE\",\"nbsource\":\"online\"}",
-    "x-req-appkey": "34351764",
-    "x-open-biz": "mini-app",
-    "x-open-biz-data": "%7B%22appId%22%3A%223000000088680964%22%2C%22invokerAppId%22%3A%223000000088680964%22%2C%22viaFusionApp%22%3Atrue%7D",
-    "x-exttype": "isv_open_api",
-    "appid": "3000000088680964"
-  };
-  const _0x23aac9 = new Date()["getTime"]();
-  const _0x11b19f = 34351764;
-  const _0x43dafe = "data=" + encodeURIComponent(JSON["stringify"](_0x3c14d6));
-  const _0x208fa6 = getToken(_0x846f90);
-  const _0x93d6d4 = _0x208fa6["split"]("_")[0];
-  const _0x8540c0 = md5(_0x93d6d4 + "&" + _0x23aac9 + "&" + _0x11b19f + "&" + JSON["stringify"](_0x3c14d6));
-  const _0x2ba191 = {
-    "url": "https://shopping.ele.me/h5/" + _0xe42167 + "/1.0/?jsv=2.6.1&appKey=34351764&t=" + _0x23aac9 + "&sign=" + _0x8540c0 + "&api=" + _0xe42167 + "&v=1.0&type=originaljson&ttid=1608030065155%40eleme_android_11.0.38",
-    "method": "POST",
-    "headers": _0x45d61d,
-    "body": _0x43dafe
-  };
-  return tryCatchPromise(_0x2911df => {
-    _0xd960c1(_0x2ba191, async (_0x2299f1, _0x1cb3ee, _0x4e0376) => {
-      if (!_0x2299f1 && _0x1cb3ee["statusCode"] == 200) {
-        try {
-          const _0x5a599c = JSON["parse"](_0x4e0376);
-          _0x2911df(_0x5a599c["data"]["data"]);
-        } catch (_0x36f649) {
-          console["log"](_0x4e0376);
-          _0x2911df(null);
+  async list() {
+    let _0x10d950 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x86620 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/personal/score/info", _0x10d950),
+      _0x599fe3 = _0x86620.data.jobs,
+      _0x556957 = _0x599fe3[1].progress,
+      _0x32bc4d = _0x599fe3[1].totalProgress,
+      _0x22e839 = _0x599fe3[2].progress,
+      _0x4b21ca = _0x599fe3[2].totalProgress,
+      _0x3c2b0f = _0x599fe3[3].progress,
+      _0x3ca34c = _0x599fe3[3].totalProgress,
+      _0x2c2a21 = _0x599fe3[4].progress,
+      _0x4a921b = _0x599fe3[4].totalProgress,
+      _0x27d588 = _0x599fe3[6].progress,
+      _0x226e0 = _0x599fe3[6].totalProgress,
+      _0x4883ac = _0x599fe3[7].progress,
+      _0xd0cb7a = _0x599fe3[7].totalProgress;
+    if (_0x86620.data.jobs) {
+      _0x599fe3[1].status == 0 ? await this.signin() : console.log("【" + this.name + "】签到任务已完成，请勿重复运行脚本");
+      if (_0x599fe3[1].status == 0) {
+        for (let _0x116766 = _0x556957; _0x116766 < _0x32bc4d; _0x116766++) {
+          await this.read();
         }
       } else {
-        _0x2911df(null);
+        console.log("【" + this.name + "】阅读任务已完成，请勿重复运行脚本");
+      }
+      if (_0x599fe3[2].status == 0) {
+        for (let _0x19f934 = _0x22e839; _0x19f934 < _0x4b21ca; _0x19f934++) {
+          await this.video();
+        }
+      } else {
+        console.log("【" + this.name + "】视频任务已完成，请勿重复运行脚本");
+      }
+      if (_0x599fe3[3].status == 0) {
+        for (let _0x4d5d15 = _0x3c2b0f; _0x4d5d15 < _0x3ca34c; _0x4d5d15++) {
+          await this.favor();
+        }
+      } else {
+        console.log("【" + this.name + "】收藏任务已完成，请勿重复运行脚本");
+      }
+      if (_0x599fe3[4].status == 0) {
+        for (let _0x4a0a45 = _0x2c2a21; _0x4a0a45 < _0x4a921b; _0x4a0a45++) {
+          await this.like();
+        }
+      } else {
+        console.log("【" + this.name + "】点赞任务已完成，请勿重复运行脚本");
+      }
+      if (_0x599fe3[6].status == 0) {
+        for (let _0x4b0cd8 = _0x27d588; _0x4b0cd8 < _0x226e0; _0x4b0cd8++) {
+          await this.share();
+        }
+      } else {
+        console.log("【" + this.name + "】分享任务已完成，请勿重复运行脚本");
+      }
+      if (_0x599fe3[7].status == 0) {
+        for (let _0x16c002 = _0x4883ac; _0x16c002 < _0xd0cb7a; _0x16c002++) {
+          await this.moment();
+        }
+      } else {
+        console.log("【" + this.name + "】发圈子任务已完成，请勿重复运行脚本");
+      }
+    } else {
+      console.log("【" + this.name + "】未找到任务列表，请检查变量是否正确");
+    }
+  }
+  async readlist() {
+    let _0x302250 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x38675d = "{\"channel\":{\"id\":\"7e59ea39a0ab49978c58c6e9a5c95bca\"},\"orderBy\":\"release_desc\",\"pageNo\":" + RT(1, 166) + ",\"pageSize\":20}",
+      _0x9aad8d = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/news/content/list", _0x302250, _0x38675d);
+    this.bb = _0x9aad8d.data.records;
+  }
+  async read() {
+    let _0x23f8ca = {
+        token: this.o
+      },
+      _0x43c576 = "{}",
+      _0xcd4629 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/points/read/add", _0x23f8ca, _0x43c576);
+    _0xcd4629.code == 0 ? (console.log("【" + this.name + "】阅读 成功"), await wait(15000)) : (console.log("【" + this.name + "】阅读 " + _0xcd4629.msg), await wait(5000));
+  }
+  async video() {
+    let _0x62c972 = {
+        token: this.o
+      },
+      _0x3e61cc = "{}",
+      _0x3dfca0 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/points/video/add", _0x62c972, _0x3e61cc);
+    _0x3dfca0.code == 0 ? (console.log("【" + this.name + "】看视频 成功"), await wait(5000)) : (console.log("【" + this.name + "】看视频 " + _0x3dfca0.msg), await wait(5000));
+  }
+  async moment() {
+    let _0x31b969 = {
+        token: this.o
+      },
+      _0xb6ce93 = "{\"content\":\"生活就是这样，起起伏伏，然后伏伏伏伏伏伏伏\",\"orderBy\":\"release_desc\",\"requestType\":\"1\",\"siteId\":\"310151\"}",
+      _0x2c7629 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/moment/status/add", _0x31b969, _0xb6ce93);
+    _0x2c7629.code == 0 ? (console.log("【" + this.name + "】发圈子 成功"), await wait(61000)) : (console.log("【" + this.name + "】发圈子 " + _0x2c7629.msg), await wait(5000));
+  }
+  async share() {
+    let _0x2b95f7 = {
+        token: this.o
+      },
+      _0x5503cc = "{}",
+      _0x19ba14 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/points/share/add", _0x2b95f7, _0x5503cc);
+    _0x19ba14.code == 0 ? (console.log("【" + this.name + "】分享文章 成功"), await wait(15000)) : (console.log("【" + this.name + "】分享文章 " + _0x19ba14.msg), await wait(5000));
+  }
+  async like() {
+    let _0xa8746e = this.bb[RT(0, 19)].id,
+      _0x56b392 = this.bb[RT(0, 19)].title,
+      _0x1287e7 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x2853d3 = "{\"liveStatus\":\"\",\"topLevel\":0,\"id\":\"" + _0xa8746e + "\"}",
+      _0x208b62 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/news/content/like", _0x1287e7, _0x2853d3);
+    _0x208b62.code == 0 ? (console.log("【" + this.name + "】点赞【" + _0x56b392 + "】成功"), await wait(5000)) : (console.log("【" + this.name + "】点赞 " + _0x208b62.msg), await wait(5000));
+  }
+  async favor() {
+    let _0x525fc4 = this.bb[RT(0, 19)].id,
+      _0x403cab = this.bb[RT(0, 19)].title,
+      _0x1cd957 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x3a198c = "{\"liveStatus\":\"\",\"topLevel\":0,\"id\":\"" + _0x525fc4 + "\"}",
+      _0x5b9b13 = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/news/content/favor", _0x1cd957, _0x3a198c);
+    _0x5b9b13.code == 0 ? (console.log("【" + this.name + "】收藏【" + _0x403cab + "】成功"), await wait(5000)) : (console.log("【" + this.name + "】收藏 " + _0x5b9b13.msg), await wait(5000));
+  }
+  async comment() {
+    let _0x34e0a2 = this.bb[RT(0, 9)].id,
+      _0xeadb10 = this.bb[RT(0, 19)].title,
+      _0x4e2f75 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x5e0336 = "{\"content\":\"每天看崇明，每次都有新知识，继续加油哦" + (1 + RT(56, 7463829)) + "\",\"displayResources\":[],\"targetId\":\"" + _0x34e0a2 + "\",\"targetType\":\"content\"}",
+      _0x5d3fbc = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/common/comment/add", _0x4e2f75, _0x5e0336);
+    _0x5d3fbc.code == 0 ? (console.log("【" + this.name + "】评论【" + _0xeadb10 + "】成功"), await wait(30000)) : (console.log("【" + this.name + "】评论 " + _0x5d3fbc.msg), await wait(5000));
+  }
+  async signin() {
+    let _0x49498e = "{}",
+      _0xdfb0c0 = {
+        "log-header": "I am the log request header.",
+        token: this.o
+      },
+      _0x8b40ca = await task("post", "https://cmapi.shmedia.tech/media-basic-port/api/app/personal/score/sign", _0xdfb0c0, _0x49498e);
+    _0x8b40ca.code == 0 ? (console.log("【" + this.name + "】 签到 成功"), await wait(5000)) : (console.log("【" + this.name + "】签到 " + _0x8b40ca.msg), await wait(5000));
+  }
+}
+!(async () => {
+  console.log("蛋炒饭美食交流频道：https://t.me/+s7DXGAezpNhjOGU1");
+  console.log(NAME);
+  checkEnv();
+  for (let _0x5c9e31 of userList) {
+    await _0x5c9e31.user();
+    await _0x5c9e31.readlist();
+    await _0x5c9e31.list();
+  }
+})().catch(_0x3b1f53 => {
+  console.log(_0x3b1f53);
+}).finally(() => {});
+function RT(_0x17d582, _0x20d2a7) {
+  return Math.round(Math.random() * (_0x20d2a7 - _0x17d582) + _0x17d582);
+}
+function times(_0x2dee36) {
+  if (_0x2dee36 == 10) {
+    let _0x2e72db = Math.round(new Date().getTime() / 1000).toString();
+    return _0x2e72db;
+  } else {
+    let _0x2338e6 = new Date().getTime();
+    return _0x2338e6;
+  }
+}
+async function task(_0x8ad565, _0xd4e6a4, _0x4a029f, _0x2e70bd) {
+  _0x8ad565 == "delete" ? _0x8ad565 = _0x8ad565.toUpperCase() : _0x8ad565 = _0x8ad565;
+  const _0xeb4cb0 = require("request");
+  _0x8ad565 == "post" && (delete _0x4a029f["content-type"], delete _0x4a029f["Content-type"], delete _0x4a029f["content-Type"], safeGet(_0x2e70bd) ? _0x4a029f["Content-Type"] = "application/json;charset=UTF-8" : _0x4a029f["Content-Type"] = "application/x-www-form-urlencoded", _0x2e70bd && (_0x4a029f["Content-Length"] = lengthInUtf8Bytes(_0x2e70bd)));
+  _0x4a029f.Host = _0xd4e6a4.replace("//", "/").split("/")[1];
+  if (_0x8ad565.indexOf("T") < 0) {
+    var _0x477c52 = {
+      url: _0xd4e6a4,
+      headers: _0x4a029f,
+      body: _0x2e70bd
+    };
+  } else {
+    var _0x477c52 = {
+      url: _0xd4e6a4,
+      headers: _0x4a029f,
+      form: JSON.parse(_0x2e70bd)
+    };
+  }
+  return new Promise(async _0x92c373 => {
+    _0xeb4cb0[_0x8ad565.toLowerCase()](_0x477c52, (_0x156293, _0x4c64ee, _0x5362ec) => {
+      try {
+        LOGS == 1 && (console.log("==================请求=================="), console.log(_0x477c52), console.log("==================返回=================="), console.log(JSON.parse(_0x5362ec)));
+      } catch (_0x272aa5) {} finally {
+        !_0x156293 ? safeGet(_0x5362ec) ? _0x5362ec = JSON.parse(_0x5362ec) : _0x5362ec = _0x5362ec : _0x5362ec = _0xd4e6a4 + "   API请求失败，请检查网络重试\n" + _0x156293;
+        return _0x92c373(_0x5362ec);
       }
     });
   });
 }
-let _0x1b7a8d;
-let _0x35bf66;
-let _0xa8f67f = [];
-let _0xb0cda6 = [];
-let _0x4399a0 = [];
-async function _0x31f56d(_0x438d96, _0x427368) {
-  await _0xd42e5(_0x427368);
-  await _0xe6e63a(_0x438d96);
-  let _0x4942b8 = await _0x30b351(_0x438d96);
-  while (_0x4942b8 === 0) {
-    let _0xc5a491 = await _0x2eb09b(_0x438d96);
-    await _0xd42e5(_0xc5a491);
-    _0x4942b8 = await _0x30b351(_0x438d96);
+function SJS(_0x505502) {
+  _0x505502 = _0x505502 || 32;
+  var _0x17635a = "1234567890",
+    _0x137bdc = _0x17635a.length,
+    _0xc6a764 = "";
+  for (i = 0; i < _0x505502; i++) {
+    _0xc6a764 += _0x17635a.charAt(Math.floor(Math.random() * _0x137bdc));
   }
-  await _0x25c58b(_0x438d96);
+  return _0xc6a764;
 }
-async function _0xd42e5(_0x5c2fe9) {
-  _0x1b7a8d = null;
-  _0x35bf66 = null;
-  _0xa8f67f = [];
-  _0xb0cda6 = [];
-  _0x4399a0 = [];
-  _0x1b7a8d = _0x5c2fe9["gameId"];
-  _0x35bf66 = _0x5c2fe9["token"];
-  _0x22b780 = _0x5c2fe9["cropInfo"]["ownCropMap"];
-  let _0x35c178 = _0x5c2fe9["gardenInfo"]["checkerboard"];
-  for (let _0x43f0c4 = 0; _0x43f0c4 < _0x35c178["length"]; _0x43f0c4++) {
-    let _0x20c513 = _0x35c178[_0x43f0c4];
-    for (let _0x2ac9ed = 0; _0x2ac9ed < _0x20c513["length"]; _0x2ac9ed++) {
-      let _0xb962aa = _0x20c513[_0x2ac9ed];
-      if (!_0xb962aa["isLock"]) {
-        _0xa8f67f["push"](_0xb962aa);
-      }
-    }
+function SJSxx(_0x45dfbc) {
+  _0x45dfbc = _0x45dfbc || 32;
+  var _0xb4ae14 = "abcdefghijklmnopqrstuvwxyz1234567890",
+    _0x1737a5 = _0xb4ae14.length,
+    _0x5b47a2 = "";
+  for (i = 0; i < _0x45dfbc; i++) {
+    _0x5b47a2 += _0xb4ae14.charAt(Math.floor(Math.random() * _0x1737a5));
   }
-  Object["keys"](_0x22b780)["forEach"](_0x48b5e7 => {
-    let _0x1b4b83 = _0x22b780[_0x48b5e7];
-    if (_0x1b4b83["seeds"]["length"] > 0) {
-      let _0x409985 = _0x3f4a47(_0x1b4b83["queryId"]);
-      if (_0x409985) {
-        _0x409985["seeds"] = _0x1b4b83["seeds"];
-        _0x4399a0["push"](_0x409985);
-      }
+  return _0x5b47a2;
+}
+function safeGet(_0x4c50c9) {
+  try {
+    if (typeof JSON.parse(_0x4c50c9) == "object") {
+      return true;
     }
+  } catch (_0x3658d5) {
+    return false;
+  }
+}
+function lengthInUtf8Bytes(_0x455321) {
+  let _0x3d9e32 = encodeURIComponent(_0x455321).match(/%[89ABab]/g);
+  return _0x455321.length + (_0x3d9e32 ? _0x3d9e32.length : 0);
+}
+async function checkEnv() {
+  let _0x195ae0 = process.env[VALY] || CK,
+    _0x367cc2 = 0;
+  if (_0x195ae0) {
+    for (let _0x4ff645 of _0x195ae0.split("&").filter(_0x1af596 => !!_0x1af596)) {
+      userList.push(new Bar(_0x4ff645));
+    }
+    _0x367cc2 = userList.length;
+  } else {
+    console.log("\n【" + NAME + "】：未填写变量: " + VALY);
+  }
+  console.log("共找到" + _0x367cc2 + "个账号");
+  return userList;
+}
+function wait(_0x217100) {
+  return new Promise(_0x4522d6 => setTimeout(_0x4522d6, _0x217100));
+}
+function stringToBase64(_0x486865) {
+  var _0x294b94 = Buffer.from(_0x486865).toString("base64");
+  return _0x294b94;
+}
+function EncryptCrypto(_0x15eef4, _0x2f7c54, _0x7d5c82, _0x51119e, _0xf6a36f, _0x4d9dce) {
+  const _0x4afa32 = require("crypto-js"),
+    _0x334c6b = _0x4afa32.enc.Utf8.parse(_0x51119e),
+    _0x21c86f = _0x4afa32.enc.Utf8.parse(_0x4d9dce),
+    _0x1195ef = _0x4afa32.enc.Utf8.parse(_0xf6a36f),
+    _0x3ae9e5 = _0x4afa32[_0x15eef4].encrypt(_0x334c6b, _0x1195ef, {
+      iv: _0x21c86f,
+      mode: _0x4afa32.mode[_0x2f7c54],
+      padding: _0x4afa32.pad[_0x7d5c82]
+    });
+  return _0x3ae9e5.toString();
+}
+function DecryptCrypto(_0xab684a, _0x5d9373, _0x1889b8, _0x38a655, _0x531b37, _0x12c642) {
+  const _0x203d93 = require("crypto-js"),
+    _0x5e4341 = _0x203d93.enc.Utf8.parse(_0x12c642),
+    _0x109b28 = _0x203d93.enc.Utf8.parse(_0x531b37),
+    _0x49e888 = _0x203d93[_0xab684a].decrypt(_0x38a655, _0x109b28, {
+      iv: _0x5e4341,
+      mode: _0x203d93.mode[_0x5d9373],
+      padding: _0x203d93.pad[_0x1889b8]
+    });
+  return _0x49e888.toString(_0x203d93.enc.Utf8);
+}
+function RSA(_0x2efe06, _0x39b28) {
+  const _0x4bfb72 = require("node-rsa");
+  let _0x7e9633 = new _0x4bfb72("-----BEGIN PUBLIC KEY-----\n" + _0x39b28 + "\n-----END PUBLIC KEY-----");
+  _0x7e9633.setOptions({
+    encryptionScheme: "pkcs1"
   });
-  _0xb0cda6 = _0x5c2fe9["orderInfo"]["orderArray"];
+  return _0x7e9633.encrypt(_0x2efe06, "base64", "utf8");
 }
-async function _0x1de15a(_0x313069, _0x1e6599, _0x553533) {
-  let _0x46ed77 = true;
-  let _0x4e2c17 = [];
-  for (let _0x58ff2b = 0; _0x58ff2b < _0x313069["length"]; _0x58ff2b++) {
-    let _0x253ba8 = _0x313069[_0x58ff2b];
-    let _0x6b2252 = _0x1c2c8b(_0x253ba8);
-    if (!_0x6b2252) {
-      _0x46ed77 = false;
-      break;
-    } else {
-      _0x4e2c17["push"](_0x6b2252["pos"]);
-    }
-  }
-  if (_0x46ed77) {
-    let _0x4ed096 = await _0x54ec17(_0x1e6599, _0x553533["queryId"], _0x4e2c17, _0x553533["customerId"], _0x553533["type"]);
-    if (_0x4ed096) {
-      console["log"]("\u5B8C\u6210\u8BA2\u5355\uFF0C\u83B7\u5F97", _0x553533["orderValue"], "\u91D1\u5E01");
-      return 3;
-    }
-  }
+function SHA1_Encrypt(_0x3078f8) {
+  return CryptoJS.SHA1(_0x3078f8).toString();
 }
-async function _0x3d9d6b(_0x18112d) {
-  for (let _0x5a94ed = 0; _0x5a94ed < _0x4399a0["length"]; _0x5a94ed++) {
-    let _0x104134 = _0x4399a0[_0x5a94ed];
-    if (!_0x104134) {
-      console["log"]("\u9700\u8981\u89E3\u9501\u65B0\u6BCD\u4F53\u690D\u7269");
-      return;
-    }
-    let _0x58e621 = [];
-    for (let _0x103451 = 0; _0x103451 < _0xa8f67f["length"]; _0x103451++) {
-      let _0x336da4 = _0xa8f67f[_0x103451];
-      if (!_0x336da4["cropQueryId"]) {
-        const _0x3f3134 = {
-          "producedCrop": {},
-          "type": 2,
-          "pos1": _0x104134["pos"],
-          "pos2": _0x336da4["pos"],
-          "timestamp": new Date()["getTime"]()
-        };
-        _0x3f3134["producedCrop"]["queryId"] = _0x1a886c(_0x22b780, 1);
-        _0x3f3134["producedCrop"]["cropId"] = _0x104134["seeds"][0];
-        _0x58e621["push"](_0x3f3134);
-      }
-    }
-    if (_0x58e621["length"] > 0) {
-      console["log"]("\u5F00\u59CB\u79CD\u690D\u65B0\u7684\u690D\u7269");
-      let _0x328dd7 = await _0x1024fc(_0x18112d, _0x58e621);
-      if (_0x328dd7 === -1) {
-        return -1;
-      } else if (_0x328dd7 === 1 || _0x328dd7 == null) {
-        continue;
-      }
-      return 0;
-    }
+function SHA256(_0x3ba7c7) {
+  const _0x3c5382 = 8,
+    _0x1f14e3 = 0;
+  function _0x187545(_0x43e9d0, _0x31bb13) {
+    const _0x3a7394 = (65535 & _0x43e9d0) + (65535 & _0x31bb13);
+    return (_0x43e9d0 >> 16) + (_0x31bb13 >> 16) + (_0x3a7394 >> 16) << 16 | 65535 & _0x3a7394;
   }
-}
-async function _0x30b351(_0x3bd27a) {
-  for (let _0xa8b92d = 0; _0xa8b92d < _0xa8f67f["length"]; _0xa8b92d++) {
-    let _0x2fb245 = _0xa8f67f[_0xa8b92d];
-    if (_0x2fb245["cropQueryId"]) {
-      if (_0x22b780[_0x2fb245["cropQueryId"]]["type"] === 1) {
-        await _0x4338e2(_0x3bd27a, _0x2fb245["pos"]);
-      }
-    }
+  function _0x4e007b(_0x22a2e1, _0x46f94b) {
+    return _0x22a2e1 >>> _0x46f94b | _0x22a2e1 << 32 - _0x46f94b;
   }
-  return await _0x3d9d6b(_0x3bd27a);
-}
-async function _0x3ed2e4(_0x5eb131) {
-  const _0x190f14 = new Date()["getTime"]();
-  _0x244760++;
-  const _0x35ecd1 = {
-    "body": "{\"type\":2,\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/onlineB/api/game/refresh",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + _0x190f14 + "\",\"mc-env\":\"online\",\"mc-network\":\"WIFI\"}"
-  };
-  let _0x417f26 = await _0x768dee("mtop.miniapp.cloud.application.request", _0x5eb131, _0x35ecd1);
-  return _0x417f26;
-}
-function _0x1c2c8b(_0x46007f) {
-  for (let _0x11e4f8 = 0; _0x11e4f8 < _0xa8f67f["length"]; _0x11e4f8++) {
-    let _0x28aa5d = _0xa8f67f[_0x11e4f8];
-    let _0x3bb85d = _0x28aa5d["cropQueryId"];
-    if (_0x3bb85d) {
-      let _0x3286eb = _0x22b780[_0x3bb85d];
-      if (_0x3286eb) {
-        if (_0x3286eb["id"] === _0x46007f) {
-          return _0x28aa5d;
-        }
-      }
-    }
+  function _0x35be91(_0x27444a, _0x2967bf) {
+    return _0x27444a >>> _0x2967bf;
   }
-  return null;
-}
-function _0x3f4a47(_0x1aea5d) {
-  for (let _0x2605f4 = 0; _0x2605f4 < _0xa8f67f["length"]; _0x2605f4++) {
-    let _0x4ed3d8 = _0xa8f67f[_0x2605f4];
-    if (_0x4ed3d8["cropQueryId"] === _0x1aea5d) {
-      return _0x4ed3d8;
-    }
+  function _0x1220fe(_0x495b33, _0x331c6d, _0x2e29a5) {
+    return _0x495b33 & _0x331c6d ^ ~_0x495b33 & _0x2e29a5;
   }
-  return null;
-}
-function _0x1a886c(_0x2b3714, _0xecfab1) {
-  var _0xa54c9c = _0x40dc91(Date["now"](), Math["random"]());
-  if (!_0x2b3714 || !_0x2b3714[_0xa54c9c] || !_0xecfab1 || _0xecfab1 <= 0) return _0xa54c9c;
-  for (var _0x5c252f = 0; _0x5c252f < _0xecfab1; _0x5c252f++) {
-    if (!_0x2b3714[_0xa54c9c = _0x40dc91(Date["now"](), Math["random"]())]) return _0xa54c9c;
-    console["error"]("generate id failed, retry:" + (_0x5c252f + 1) + "/" + _0xecfab1);
+  function _0x5973cc(_0x57bdb4, _0x4a319b, _0x541ce9) {
+    return _0x57bdb4 & _0x4a319b ^ _0x57bdb4 & _0x541ce9 ^ _0x4a319b & _0x541ce9;
   }
-}
-function _0x40dc91() {
-  for (var _0x10372a = [], _0x2c7add = 0; _0x2c7add < arguments["length"]; _0x2c7add++) {
-    _0x10372a[_0x2c7add] = arguments[_0x2c7add];
+  function _0x3aa3d7(_0x1b9929) {
+    return _0x4e007b(_0x1b9929, 2) ^ _0x4e007b(_0x1b9929, 13) ^ _0x4e007b(_0x1b9929, 22);
   }
-  return md5(_0x10372a["join"]("+"))["toString"]();
-}
-async function _0x1024fc(_0x2e65b5, _0x3fff1b) {
-  await wait(3);
-  _0x244760++;
-  let _0x2959d6 = JSON["stringify"](_0x3fff1b);
-  const _0x2b1d94 = {
-    "body": "{\"cmds\":" + _0x2959d6 + ",\"reqIdx\":" + _0x244760 + ",\"gameId\":\"" + _0x1b7a8d + "\",\"token\":\"" + _0x35bf66 + "\",\"targetServer\":\"onlineB\",\"clientVersion\":\"v1.5.4\"}",
-    "headers": "{\"content-type\":\"application/json;charset=UTF-8\"}",
-    "instance": "INNER",
-    "method": "POST",
-    "options": "{\"cloudAppId\":\"47442\",\"timeout\":3000}",
-    "path": "/onlineB/api/game/cmdExec",
-    "protocols": "{\"Content-Type\":\"application/json\",\"mc-timestamp\":\"" + Date["now"]() + "\",\"mc-env\":\"online\",\"mc-network\":\"NOTREACHABLE\"}"
-  };
-  let _0x5a38ea = await _0x768dee("mtop.miniapp.cloud.application.request", _0x2e65b5, _0x2b1d94);
-  if (_0x5a38ea) {
-    let _0x4691e5 = _0x5a38ea["data"];
-    if (!_0x4691e5) {
-      console["log"](_0x5a38ea);
-      return null;
-    }
-    if (_0x4691e5["dayUsedEnergyNum"]) {
-      console["log"]("\u4ECA\u65E5\u6D88\u8017\u7684\u4F53\u529B\u4E3A\uFF1A" + _0x4691e5["dayUsedEnergyNum"]);
-      if (_0x4691e5["dayUsedEnergyNum"] > 299) {
-        await _0x25c58b(_0x2e65b5);
-        console["log"]("\u4ECA\u65E5\u6240\u6709\u4E50\u56ED\u5E01\u4EFB\u52A1\u5DF2\u5B8C\u6210");
-        return -1;
-      }
-    }
-    let _0x4af419 = _0x4691e5["changedPieceList"];
-    if (_0x4af419["length"] === 0) {
-      if (_0x4691e5["energy"] === 0) {
-        console["log"]("\u4F53\u529B\u4E0D\u8DB3");
-        return -1;
-      } else {
-        console["log"]("\u79CD\u690D\u5931\u8D25\uFF0C\u7A0D\u540E\u91CD\u8BD5");
-        return 1;
-      }
-    }
-    if (_0x4af419) {
-      for (let _0x1a25ec = 0; _0x1a25ec < _0x4af419["length"]; _0x1a25ec++) {
-        let _0x5017fe = _0x4af419[_0x1a25ec];
-        for (let _0x55b2f2 = 0; _0x55b2f2 < _0xa8f67f["length"]; _0x55b2f2++) {
-          let _0xd36e9 = _0xa8f67f[_0x55b2f2];
-          if (_0x5017fe["pieceId"] === _0xd36e9["pieceId"]) {
-            _0xa8f67f[_0x55b2f2] = _0x5017fe;
-          }
-        }
-      }
-    }
-    let _0x59adef = _0x4691e5["changedCropMap"];
-    if (_0x59adef) {
-      Object["keys"](_0x59adef)["forEach"](_0x476275 => {
-        if (_0x22b780[_0x476275]) {
-          if (_0x59adef[_0x476275]["isDelete"]) {
-            delete _0x22b780[_0x476275];
-          } else {
-            _0x22b780[_0x476275] = _0x59adef[_0x476275]["cropInfo"];
-          }
-        } else {
-          _0x22b780[_0x476275] = _0x59adef[_0x476275]["cropInfo"];
-        }
-      });
-    }
+  function _0x476d14(_0x5b26b0) {
+    return _0x4e007b(_0x5b26b0, 6) ^ _0x4e007b(_0x5b26b0, 11) ^ _0x4e007b(_0x5b26b0, 25);
   }
-  return _0x5a38ea;
-}
-async function _0x2b4a48() {
-  const _0x122270 = getCookies();
-  for (let _0x58e74c = 0; _0x58e74c < _0x122270["length"]; _0x58e74c++) {
-    const _0xfb13b1 = _0x122270[_0x58e74c];
-    if (!_0xfb13b1) {
-      console["log"](" \u274C\u65E0\u6548\u7528\u6237\u4FE1\u606F, \u8BF7\u91CD\u65B0\u83B7\u53D6ck");
-    } else {
-      try {
-        let _0xa95efd = await checkCk(_0xfb13b1, _0x58e74c);
-        if (!_0xa95efd) {
-          continue;
-        }
-        let _0x2003d5 = await getUserInfo(_0xa95efd);
-        if (!_0x2003d5["username"]) {
-          console["log"]("\u7B2C", _0x58e74c + 1, "\u8D26\u53F7\u5931\u6548\uFF01\u8BF7\u91CD\u65B0\u767B\u5F55\uFF01\uFF01\uFF01\uD83D\uDE2D");
-          continue;
-        }
-        const _0x35e63c = _0x2003d5["user_id"];
-        console["log"]("******\u5F00\u59CB\u3010\u997F\u4E86\u4E48\u8D26\u53F7", _0x58e74c + 1, "\u3011", _0x2003d5["username"], "*********");
-        let _0x15d4ce = await _0x1d5d09(_0xa95efd);
-        if (!_0x15d4ce) {
-          console["log"]("\u8BF7\u5B8C\u6210\u5B9E\u540D\u8BA4\u8BC1\u540E\u518D\u6765\u73A9\u6E38\u620F");
-          continue;
-        }
-        let _0x4c52f9 = await _0x2eb09b(_0xa95efd);
-        if (_0x4c52f9["gardenInfo"]["level"] < 4) {
-          console["log"]("\u8BF7\u5148\u73A9\u5230 4 \u7EA7\u518D\u8FD0\u884C\u811A\u672C");
-          continue;
-        }
-        await _0x31f56d(_0xa95efd, _0x4c52f9);
-      } catch (_0x4236b6) {
-        console["log"](_0x4236b6);
-      }
-    }
+  function _0x43e1e7(_0xa2033c) {
+    return _0x4e007b(_0xa2033c, 7) ^ _0x4e007b(_0xa2033c, 18) ^ _0x35be91(_0xa2033c, 3);
   }
-  process["exit"](0);
+  return function (_0x1fddbc) {
+    const _0x492abb = _0x1f14e3 ? "0123456789ABCDEF" : "0123456789abcdef";
+    let _0x59fe58 = "";
+    for (let _0x15aba6 = 0; _0x15aba6 < 4 * _0x1fddbc.length; _0x15aba6++) {
+      _0x59fe58 += _0x492abb.charAt(_0x1fddbc[_0x15aba6 >> 2] >> 8 * (3 - _0x15aba6 % 4) + 4 & 15) + _0x492abb.charAt(_0x1fddbc[_0x15aba6 >> 2] >> 8 * (3 - _0x15aba6 % 4) & 15);
+    }
+    return _0x59fe58;
+  }(function (_0x16fc34, _0x3371a3) {
+    const _0x2da0b1 = [1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298],
+      _0x49ab17 = [1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225],
+      _0x517615 = new Array(64);
+    let _0x3dd1fc, _0x258159, _0x1b884d, _0x219a37, _0x11f1ba, _0x5f1b34, _0x3bce09, _0x35d38a, _0x4f85af, _0x1b9289, _0x23f6e6, _0x23015f;
+    for (_0x16fc34[_0x3371a3 >> 5] |= 128 << 24 - _0x3371a3 % 32, _0x16fc34[15 + (_0x3371a3 + 64 >> 9 << 4)] = _0x3371a3, _0x4f85af = 0; _0x4f85af < _0x16fc34.length; _0x4f85af += 16) {
+      for (_0x3dd1fc = _0x49ab17[0], _0x258159 = _0x49ab17[1], _0x1b884d = _0x49ab17[2], _0x219a37 = _0x49ab17[3], _0x11f1ba = _0x49ab17[4], _0x5f1b34 = _0x49ab17[5], _0x3bce09 = _0x49ab17[6], _0x35d38a = _0x49ab17[7], _0x1b9289 = 0; _0x1b9289 < 64; _0x1b9289++) {
+        _0x517615[_0x1b9289] = _0x1b9289 < 16 ? _0x16fc34[_0x1b9289 + _0x4f85af] : _0x187545(_0x187545(_0x187545(_0x4e007b(_0x463075 = _0x517615[_0x1b9289 - 2], 17) ^ _0x4e007b(_0x463075, 19) ^ _0x35be91(_0x463075, 10), _0x517615[_0x1b9289 - 7]), _0x43e1e7(_0x517615[_0x1b9289 - 15])), _0x517615[_0x1b9289 - 16]);
+        _0x23f6e6 = _0x187545(_0x187545(_0x187545(_0x187545(_0x35d38a, _0x476d14(_0x11f1ba)), _0x1220fe(_0x11f1ba, _0x5f1b34, _0x3bce09)), _0x2da0b1[_0x1b9289]), _0x517615[_0x1b9289]);
+        _0x23015f = _0x187545(_0x3aa3d7(_0x3dd1fc), _0x5973cc(_0x3dd1fc, _0x258159, _0x1b884d));
+        _0x35d38a = _0x3bce09;
+        _0x3bce09 = _0x5f1b34;
+        _0x5f1b34 = _0x11f1ba;
+        _0x11f1ba = _0x187545(_0x219a37, _0x23f6e6);
+        _0x219a37 = _0x1b884d;
+        _0x1b884d = _0x258159;
+        _0x258159 = _0x3dd1fc;
+        _0x3dd1fc = _0x187545(_0x23f6e6, _0x23015f);
+      }
+      _0x49ab17[0] = _0x187545(_0x3dd1fc, _0x49ab17[0]);
+      _0x49ab17[1] = _0x187545(_0x258159, _0x49ab17[1]);
+      _0x49ab17[2] = _0x187545(_0x1b884d, _0x49ab17[2]);
+      _0x49ab17[3] = _0x187545(_0x219a37, _0x49ab17[3]);
+      _0x49ab17[4] = _0x187545(_0x11f1ba, _0x49ab17[4]);
+      _0x49ab17[5] = _0x187545(_0x5f1b34, _0x49ab17[5]);
+      _0x49ab17[6] = _0x187545(_0x3bce09, _0x49ab17[6]);
+      _0x49ab17[7] = _0x187545(_0x35d38a, _0x49ab17[7]);
+    }
+    var _0x463075;
+    return _0x49ab17;
+  }(function (_0x5b2278) {
+    const _0x3866b7 = [],
+      _0x3130f3 = (1 << _0x3c5382) - 1;
+    for (let _0x231e6d = 0; _0x231e6d < _0x5b2278.length * _0x3c5382; _0x231e6d += _0x3c5382) {
+      _0x3866b7[_0x231e6d >> 5] |= (_0x5b2278.charCodeAt(_0x231e6d / _0x3c5382) & _0x3130f3) << 24 - _0x231e6d % 32;
+    }
+    return _0x3866b7;
+  }(_0x3ba7c7 = function (_0x258107) {
+    _0x258107 = _0x258107.replace(/\r\n/g, "\n");
+    let _0x20e061 = "";
+    for (let _0x1c2613 = 0; _0x1c2613 < _0x258107.length; _0x1c2613++) {
+      const _0x4992f8 = _0x258107.charCodeAt(_0x1c2613);
+      _0x4992f8 < 128 ? _0x20e061 += String.fromCharCode(_0x4992f8) : _0x4992f8 > 127 && _0x4992f8 < 2048 ? (_0x20e061 += String.fromCharCode(_0x4992f8 >> 6 | 192), _0x20e061 += String.fromCharCode(63 & _0x4992f8 | 128)) : (_0x20e061 += String.fromCharCode(_0x4992f8 >> 12 | 224), _0x20e061 += String.fromCharCode(_0x4992f8 >> 6 & 63 | 128), _0x20e061 += String.fromCharCode(63 & _0x4992f8 | 128));
+    }
+    return _0x20e061;
+  }(_0x3ba7c7)), _0x3ba7c7.length * _0x3c5382));
 }
-_0x2b4a48();
-
-// prettier-ignore
-function Env(t, e) {
-  "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
-  class s {
-    constructor(t) {
-      this.env = t;
-    }
-    send(t, e = "GET") {
-      t = "string" == typeof t ? {
-        url: t
-      } : t;
-      let s = this.get;
-      return "POST" === e && (s = this.post), new Promise((e, i) => {
-        s.call(this, t, (t, s, r) => {
-          t ? i(t) : e(s);
-        });
-      });
-    }
-    get(t) {
-      return this.send.call(this.env, t);
-    }
-    post(t) {
-      return this.send.call(this.env, t, "POST");
-    }
+function MD5Encrypt(_0x538141) {
+  function _0x2f7ae7(_0x4a0597, _0x465f8b) {
+    return _0x4a0597 << _0x465f8b | _0x4a0597 >>> 32 - _0x465f8b;
   }
-  return new class {
-    constructor(t, e) {
-      this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = new Date().getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`);
+  function _0x203a90(_0x36f1ef, _0x107d3b) {
+    var _0x5b354d, _0x209da5, _0x44d0c8, _0x46d81b, _0x2c1d2e;
+    _0x44d0c8 = 2147483648 & _0x36f1ef;
+    _0x46d81b = 2147483648 & _0x107d3b;
+    _0x5b354d = 1073741824 & _0x36f1ef;
+    _0x209da5 = 1073741824 & _0x107d3b;
+    _0x2c1d2e = (1073741823 & _0x36f1ef) + (1073741823 & _0x107d3b);
+    return _0x5b354d & _0x209da5 ? 2147483648 ^ _0x2c1d2e ^ _0x44d0c8 ^ _0x46d81b : _0x5b354d | _0x209da5 ? 1073741824 & _0x2c1d2e ? 3221225472 ^ _0x2c1d2e ^ _0x44d0c8 ^ _0x46d81b : 1073741824 ^ _0x2c1d2e ^ _0x44d0c8 ^ _0x46d81b : _0x2c1d2e ^ _0x44d0c8 ^ _0x46d81b;
+  }
+  function _0x134fba(_0x32e4ca, _0x1e2665, _0x2c666c, _0x54024b, _0x4c134a, _0x2659cf, _0x56f5c0) {
+    var _0x484acb, _0x1e4b49;
+    _0x32e4ca = _0x203a90(_0x32e4ca, _0x203a90(_0x203a90((_0x484acb = _0x1e2665) & (_0x1e4b49 = _0x2c666c) | ~_0x484acb & _0x54024b, _0x4c134a), _0x56f5c0));
+    return _0x203a90(_0x2f7ae7(_0x32e4ca, _0x2659cf), _0x1e2665);
+  }
+  function _0x546cbe(_0x4b6646, _0xec8b78, _0x443906, _0xe20026, _0x4a99e9, _0x45eb0d, _0x59b6cb) {
+    var _0x1e9377, _0x24c683, _0xc61ac5;
+    _0x4b6646 = _0x203a90(_0x4b6646, _0x203a90(_0x203a90((_0x1e9377 = _0xec8b78, _0x24c683 = _0x443906, _0x1e9377 & (_0xc61ac5 = _0xe20026) | _0x24c683 & ~_0xc61ac5), _0x4a99e9), _0x59b6cb));
+    return _0x203a90(_0x2f7ae7(_0x4b6646, _0x45eb0d), _0xec8b78);
+  }
+  function _0x465952(_0x4a9f61, _0x24d8a7, _0x57aa10, _0x2e5f16, _0x45a408, _0x58003e, _0x53c2ac) {
+    var _0x427bba, _0x4badc9;
+    _0x4a9f61 = _0x203a90(_0x4a9f61, _0x203a90(_0x203a90((_0x427bba = _0x24d8a7) ^ (_0x4badc9 = _0x57aa10) ^ _0x2e5f16, _0x45a408), _0x53c2ac));
+    return _0x203a90(_0x2f7ae7(_0x4a9f61, _0x58003e), _0x24d8a7);
+  }
+  function _0x523824(_0x1c4771, _0x16a319, _0x4c6480, _0x3c47ad, _0x284200, _0x28f1f6, _0x41e26d) {
+    var _0x11d325, _0x4132a0;
+    _0x1c4771 = _0x203a90(_0x1c4771, _0x203a90(_0x203a90((_0x11d325 = _0x16a319, (_0x4132a0 = _0x4c6480) ^ (_0x11d325 | ~_0x3c47ad)), _0x284200), _0x41e26d));
+    return _0x203a90(_0x2f7ae7(_0x1c4771, _0x28f1f6), _0x16a319);
+  }
+  function _0x26c090(_0x22f742) {
+    var _0x5290e0,
+      _0x1bbbb8 = "",
+      _0x17dd19 = "";
+    for (_0x5290e0 = 0; 3 >= _0x5290e0; _0x5290e0++) {
+      _0x1bbbb8 += (_0x17dd19 = "0" + (_0x22f742 >>> 8 * _0x5290e0 & 255).toString(16)).substr(_0x17dd19.length - 2, 2);
     }
-    isNode() {
-      return "undefined" != typeof module && !!module.exports;
+    return _0x1bbbb8;
+  }
+  var _0x214e24,
+    _0x387ebf,
+    _0x4fd4a1,
+    _0x415e73,
+    _0x5e5111,
+    _0x4fd311,
+    _0x1f48d4,
+    _0x3061ad,
+    _0x22e670,
+    _0x3e069d = [];
+  for (_0x3e069d = function (_0x2f6020) {
+    for (var _0x4ce8, _0x389e50 = _0x2f6020.length, _0x324c83 = _0x389e50 + 8, _0x3fe26d = 16 * ((_0x324c83 - _0x324c83 % 64) / 64 + 1), _0x474877 = Array(_0x3fe26d - 1), _0x5af544 = 0, _0x26677b = 0; _0x389e50 > _0x26677b;) {
+      _0x4ce8 = (_0x26677b - _0x26677b % 4) / 4;
+      _0x5af544 = _0x26677b % 4 * 8;
+      _0x474877[_0x4ce8] = _0x474877[_0x4ce8] | _0x2f6020.charCodeAt(_0x26677b) << _0x5af544;
+      _0x26677b++;
     }
-    isQuanX() {
-      return "undefined" != typeof $task;
+    _0x4ce8 = (_0x26677b - _0x26677b % 4) / 4;
+    _0x5af544 = _0x26677b % 4 * 8;
+    _0x474877[_0x4ce8] = _0x474877[_0x4ce8] | 128 << _0x5af544;
+    _0x474877[_0x3fe26d - 2] = _0x389e50 << 3;
+    _0x474877[_0x3fe26d - 1] = _0x389e50 >>> 29;
+    return _0x474877;
+  }(_0x538141 = function (_0x12f11e) {
+    _0x12f11e = _0x12f11e.replace(/\r\n/g, "\n");
+    for (var _0x4730ae = "", _0x1ca6b2 = 0; _0x1ca6b2 < _0x12f11e.length; _0x1ca6b2++) {
+      var _0x586cb8 = _0x12f11e.charCodeAt(_0x1ca6b2);
+      128 > _0x586cb8 ? _0x4730ae += String.fromCharCode(_0x586cb8) : _0x586cb8 > 127 && 2048 > _0x586cb8 ? (_0x4730ae += String.fromCharCode(_0x586cb8 >> 6 | 192), _0x4730ae += String.fromCharCode(63 & _0x586cb8 | 128)) : (_0x4730ae += String.fromCharCode(_0x586cb8 >> 12 | 224), _0x4730ae += String.fromCharCode(_0x586cb8 >> 6 & 63 | 128), _0x4730ae += String.fromCharCode(63 & _0x586cb8 | 128));
     }
-    isSurge() {
-      return "undefined" != typeof $httpClient && "undefined" == typeof $loon;
-    }
-    isLoon() {
-      return "undefined" != typeof $loon;
-    }
-    toObj(t, e = null) {
-      try {
-        return JSON.parse(t);
-      } catch {
-        return e;
-      }
-    }
-    toStr(t, e = null) {
-      try {
-        return JSON.stringify(t);
-      } catch {
-        return e;
-      }
-    }
-    getjson(t, e) {
-      let s = e;
-      const i = this.getdata(t);
-      if (i) try {
-        s = JSON.parse(this.getdata(t));
-      } catch {}
-      return s;
-    }
-    setjson(t, e) {
-      try {
-        return this.setdata(JSON.stringify(t), e);
-      } catch {
-        return !1;
-      }
-    }
-    getScript(t) {
-      return new Promise(e => {
-        this.get({
-          url: t
-        }, (t, s, i) => e(i));
-      });
-    }
-    runScript(t, e) {
-      return new Promise(s => {
-        let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
-        i = i ? i.replace(/\n/g, "").trim() : i;
-        let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
-        r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
-        const [o, h] = i.split("@"),
-          n = {
-            url: `http://${h}/v1/scripting/evaluate`,
-            body: {
-              script_text: t,
-              mock_type: "cron",
-              timeout: r
-            },
-            headers: {
-              "X-Key": o,
-              Accept: "*/*"
-            }
-          };
-        this.post(n, (t, e, i) => s(i));
-      }).catch(t => this.logErr(t));
-    }
-    loaddata() {
-      if (!this.isNode()) return {};
-      {
-        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
-        const t = this.path.resolve(this.dataFile),
-          e = this.path.resolve(process.cwd(), this.dataFile),
-          s = this.fs.existsSync(t),
-          i = !s && this.fs.existsSync(e);
-        if (!s && !i) return {};
-        {
-          const i = s ? t : e;
-          try {
-            return JSON.parse(this.fs.readFileSync(i));
-          } catch (t) {
-            return {};
-          }
-        }
-      }
-    }
-    writedata() {
-      if (this.isNode()) {
-        this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
-        const t = this.path.resolve(this.dataFile),
-          e = this.path.resolve(process.cwd(), this.dataFile),
-          s = this.fs.existsSync(t),
-          i = !s && this.fs.existsSync(e),
-          r = JSON.stringify(this.data);
-        s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r);
-      }
-    }
-    lodash_get(t, e, s) {
-      const i = e.replace(/\[(\d+)\]/g, ".$1").split(".");
-      let r = t;
-      for (const t of i) if (r = Object(r)[t], void 0 === r) return s;
-      return r;
-    }
-    lodash_set(t, e, s) {
-      return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t);
-    }
-    getdata(t) {
-      let e = this.getval(t);
-      if (/^@/.test(t)) {
-        const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t),
-          r = s ? this.getval(s) : "";
-        if (r) try {
-          const t = JSON.parse(r);
-          e = t ? this.lodash_get(t, i, "") : e;
-        } catch (t) {
-          e = "";
-        }
-      }
-      return e;
-    }
-    setdata(t, e) {
-      let s = !1;
-      if (/^@/.test(e)) {
-        const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e),
-          o = this.getval(i),
-          h = i ? "null" === o ? null : o || "{}" : "{}";
-        try {
-          const e = JSON.parse(h);
-          this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i);
-        } catch (e) {
-          const o = {};
-          this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i);
-        }
-      } else s = this.setval(t, e);
-      return s;
-    }
-    getval(t) {
-      return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null;
-    }
-    setval(t, e) {
-      return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null;
-    }
-    initGotEnv(t) {
-      this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar(), t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar));
-    }
-    get(t, e = () => {}) {
-      t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {
-        "X-Surge-Skip-Scripting": !1
-      })), $httpClient.get(t, (t, s, i) => {
-        !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i);
-      })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
-        hints: !1
-      })), $task.fetch(t).then(t => {
-        const {
-          statusCode: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        } = t;
-        e(null, {
-          status: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        }, o);
-      }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
-        try {
-          if (t.headers["set-cookie"]) {
-            const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
-            s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar;
-          }
-        } catch (t) {
-          this.logErr(t);
-        }
-      }).then(t => {
-        const {
-          statusCode: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        } = t;
-        e(null, {
-          status: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        }, o);
-      }, t => {
-        const {
-          message: s,
-          response: i
-        } = t;
-        e(s, i, i && i.body);
-      }));
-    }
-    post(t, e = () => {}) {
-      if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {
-        "X-Surge-Skip-Scripting": !1
-      })), $httpClient.post(t, (t, s, i) => {
-        !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i);
-      });else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
-        hints: !1
-      })), $task.fetch(t).then(t => {
-        const {
-          statusCode: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        } = t;
-        e(null, {
-          status: s,
-          statusCode: i,
-          headers: r,
-          body: o
-        }, o);
-      }, t => e(t));else if (this.isNode()) {
-        this.initGotEnv(t);
-        const {
-          url: s,
-          ...i
-        } = t;
-        this.got.post(s, i).then(t => {
-          const {
-            statusCode: s,
-            statusCode: i,
-            headers: r,
-            body: o
-          } = t;
-          e(null, {
-            status: s,
-            statusCode: i,
-            headers: r,
-            body: o
-          }, o);
-        }, t => {
-          const {
-            message: s,
-            response: i
-          } = t;
-          e(s, i, i && i.body);
-        });
-      }
-    }
-    time(t, e = null) {
-      const s = e ? new Date(e) : new Date();
-      let i = {
-        "M+": s.getMonth() + 1,
-        "d+": s.getDate(),
-        "H+": s.getHours(),
-        "m+": s.getMinutes(),
-        "s+": s.getSeconds(),
-        "q+": Math.floor((s.getMonth() + 3) / 3),
-        S: s.getMilliseconds()
-      };
-      /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
-      for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
-      return t;
-    }
-    msg(e = t, s = "", i = "", r) {
-      const o = t => {
-        if (!t) return t;
-        if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {
-          "open-url": t
-        } : this.isSurge() ? {
-          url: t
-        } : void 0;
-        if ("object" == typeof t) {
-          if (this.isLoon()) {
-            let e = t.openUrl || t.url || t["open-url"],
-              s = t.mediaUrl || t["media-url"];
-            return {
-              openUrl: e,
-              mediaUrl: s
-            };
-          }
-          if (this.isQuanX()) {
-            let e = t["open-url"] || t.url || t.openUrl,
-              s = t["media-url"] || t.mediaUrl;
-            return {
-              "open-url": e,
-              "media-url": s
-            };
-          }
-          if (this.isSurge()) {
-            let e = t.url || t.openUrl || t["open-url"];
-            return {
-              url: e
-            };
-          }
-        }
-      };
-      if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
-        let t = ["", "==============\uD83D\uDCE3\u7CFB\u7EDF\u901A\u77E5\uD83D\uDCE3=============="];
-        t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t);
-      }
-    }
-    log(...t) {
-      t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator));
-    }
-    logErr(t, e) {
-      const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
-      s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t);
-    }
-    wait(t) {
-      return new Promise(e => setTimeout(e, t));
-    }
-    done(t = {}) {
-      const e = new Date().getTime(),
-        s = (e - this.startTime) / 1000;
-      this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t);
-    }
-  }(t, e);
+    return _0x4730ae;
+  }(_0x538141)), _0x4fd311 = 1732584193, _0x1f48d4 = 4023233417, _0x3061ad = 2562383102, _0x22e670 = 271733878, _0x214e24 = 0; _0x214e24 < _0x3e069d.length; _0x214e24 += 16) {
+    _0x387ebf = _0x4fd311;
+    _0x4fd4a1 = _0x1f48d4;
+    _0x415e73 = _0x3061ad;
+    _0x5e5111 = _0x22e670;
+    _0x4fd311 = _0x134fba(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 0], 7, 3614090360);
+    _0x22e670 = _0x134fba(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 1], 12, 3905402710);
+    _0x3061ad = _0x134fba(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 2], 17, 606105819);
+    _0x1f48d4 = _0x134fba(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 3], 22, 3250441966);
+    _0x4fd311 = _0x134fba(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 4], 7, 4118548399);
+    _0x22e670 = _0x134fba(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 5], 12, 1200080426);
+    _0x3061ad = _0x134fba(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 6], 17, 2821735955);
+    _0x1f48d4 = _0x134fba(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 7], 22, 4249261313);
+    _0x4fd311 = _0x134fba(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 8], 7, 1770035416);
+    _0x22e670 = _0x134fba(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 9], 12, 2336552879);
+    _0x3061ad = _0x134fba(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 10], 17, 4294925233);
+    _0x1f48d4 = _0x134fba(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 11], 22, 2304563134);
+    _0x4fd311 = _0x134fba(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 12], 7, 1804603682);
+    _0x22e670 = _0x134fba(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 13], 12, 4254626195);
+    _0x3061ad = _0x134fba(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 14], 17, 2792965006);
+    _0x1f48d4 = _0x134fba(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 15], 22, 1236535329);
+    _0x4fd311 = _0x546cbe(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 1], 5, 4129170786);
+    _0x22e670 = _0x546cbe(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 6], 9, 3225465664);
+    _0x3061ad = _0x546cbe(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 11], 14, 643717713);
+    _0x1f48d4 = _0x546cbe(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 0], 20, 3921069994);
+    _0x4fd311 = _0x546cbe(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 5], 5, 3593408605);
+    _0x22e670 = _0x546cbe(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 10], 9, 38016083);
+    _0x3061ad = _0x546cbe(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 15], 14, 3634488961);
+    _0x1f48d4 = _0x546cbe(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 4], 20, 3889429448);
+    _0x4fd311 = _0x546cbe(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 9], 5, 568446438);
+    _0x22e670 = _0x546cbe(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 14], 9, 3275163606);
+    _0x3061ad = _0x546cbe(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 3], 14, 4107603335);
+    _0x1f48d4 = _0x546cbe(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 8], 20, 1163531501);
+    _0x4fd311 = _0x546cbe(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 13], 5, 2850285829);
+    _0x22e670 = _0x546cbe(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 2], 9, 4243563512);
+    _0x3061ad = _0x546cbe(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 7], 14, 1735328473);
+    _0x1f48d4 = _0x546cbe(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 12], 20, 2368359562);
+    _0x4fd311 = _0x465952(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 5], 4, 4294588738);
+    _0x22e670 = _0x465952(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 8], 11, 2272392833);
+    _0x3061ad = _0x465952(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 11], 16, 1839030562);
+    _0x1f48d4 = _0x465952(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 14], 23, 4259657740);
+    _0x4fd311 = _0x465952(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 1], 4, 2763975236);
+    _0x22e670 = _0x465952(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 4], 11, 1272893353);
+    _0x3061ad = _0x465952(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 7], 16, 4139469664);
+    _0x1f48d4 = _0x465952(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 10], 23, 3200236656);
+    _0x4fd311 = _0x465952(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 13], 4, 681279174);
+    _0x22e670 = _0x465952(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 0], 11, 3936430074);
+    _0x3061ad = _0x465952(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 3], 16, 3572445317);
+    _0x1f48d4 = _0x465952(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 6], 23, 76029189);
+    _0x4fd311 = _0x465952(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 9], 4, 3654602809);
+    _0x22e670 = _0x465952(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 12], 11, 3873151461);
+    _0x3061ad = _0x465952(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 15], 16, 530742520);
+    _0x1f48d4 = _0x465952(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 2], 23, 3299628645);
+    _0x4fd311 = _0x523824(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 0], 6, 4096336452);
+    _0x22e670 = _0x523824(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 7], 10, 1126891415);
+    _0x3061ad = _0x523824(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 14], 15, 2878612391);
+    _0x1f48d4 = _0x523824(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 5], 21, 4237533241);
+    _0x4fd311 = _0x523824(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 12], 6, 1700485571);
+    _0x22e670 = _0x523824(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 3], 10, 2399980690);
+    _0x3061ad = _0x523824(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 10], 15, 4293915773);
+    _0x1f48d4 = _0x523824(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 1], 21, 2240044497);
+    _0x4fd311 = _0x523824(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 8], 6, 1873313359);
+    _0x22e670 = _0x523824(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 15], 10, 4264355552);
+    _0x3061ad = _0x523824(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 6], 15, 2734768916);
+    _0x1f48d4 = _0x523824(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 13], 21, 1309151649);
+    _0x4fd311 = _0x523824(_0x4fd311, _0x1f48d4, _0x3061ad, _0x22e670, _0x3e069d[_0x214e24 + 4], 6, 4149444226);
+    _0x22e670 = _0x523824(_0x22e670, _0x4fd311, _0x1f48d4, _0x3061ad, _0x3e069d[_0x214e24 + 11], 10, 3174756917);
+    _0x3061ad = _0x523824(_0x3061ad, _0x22e670, _0x4fd311, _0x1f48d4, _0x3e069d[_0x214e24 + 2], 15, 718787259);
+    _0x1f48d4 = _0x523824(_0x1f48d4, _0x3061ad, _0x22e670, _0x4fd311, _0x3e069d[_0x214e24 + 9], 21, 3951481745);
+    _0x4fd311 = _0x203a90(_0x4fd311, _0x387ebf);
+    _0x1f48d4 = _0x203a90(_0x1f48d4, _0x4fd4a1);
+    _0x3061ad = _0x203a90(_0x3061ad, _0x415e73);
+    _0x22e670 = _0x203a90(_0x22e670, _0x5e5111);
+  }
+  return (_0x26c090(_0x4fd311) + _0x26c090(_0x1f48d4) + _0x26c090(_0x3061ad) + _0x26c090(_0x22e670)).toLowerCase();
 }
