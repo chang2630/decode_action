@@ -1,4 +1,4 @@
-//Fri Nov 08 2024 10:46:08 GMT+0000 (Coordinated Universal Time)
+//Fri Dec 13 2024 08:13:00 GMT+0000 (Coordinated Universal Time)
 //Base:https://github.com/echo094/decode-js
 //Modify:https://github.com/smallfawn/decode_action
 var 蛋炒饭_0x4c99c5 = "danchaofan";
